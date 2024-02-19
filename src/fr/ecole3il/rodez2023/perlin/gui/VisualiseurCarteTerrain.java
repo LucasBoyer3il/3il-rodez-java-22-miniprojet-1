@@ -24,46 +24,47 @@ import javax.swing.SwingUtilities;
 import fr.ecole3il.rodez2023.perlin.terrain.carte.Carte;
 import fr.ecole3il.rodez2023.perlin.terrain.carte.ManipulateurCarte;
 import fr.ecole3il.rodez2023.perlin.terrain.concrets.VisualiseurTerrainEnonce;
+import fr.ecole3il.rodez2023.perlin.terrain.elements.Terrain;
 import fr.ecole3il.rodez2023.perlin.terrain.elements.TypeTerrain;
 import fr.ecole3il.rodez2023.perlin.terrain.generation.GenerateurAleatoire;
 import fr.ecole3il.rodez2023.perlin.terrain.generation.GenerateurPerlin;
 
 /**
- * 
+ *
  * @author proussille
  * La classe VisualiseurCarteTerrain représente un visualiseur de carte de terrain
  * qui permet de charger, enregistrer et générer des cartes, ainsi que d'afficher leur représentation graphique.
  */
 public class VisualiseurCarteTerrain extends JFrame {
 
-    private static final long serialVersionUID = -4664266628089280746L;
-    private final JPanel cartePanel;
-    private Carte carte;
-    private JLabel terrainLabel;
-    private VisualiseurTerrainEnonce vte;
+	private static final long serialVersionUID = -4664266628089280746L;
+	private final JPanel cartePanel;
+	private Carte carte;
+	private JLabel terrainLabel;
+	private VisualiseurTerrainEnonce vte;
 
-    /**
-     * Dessine la carte sur le panneau graphique.
-     * @param carte La carte à dessiner.
-     * @param g L'objet Graphics pour dessiner.
-     * @param panelWidth La largeur du panneau.
-     * @param panelHeight La hauteur du panneau.
-     */
-    public void drawCarte(Carte carte, Graphics g, int panelWidth, int panelHeight) {
-        vte = new VisualiseurTerrainEnonce(carte);
-        int largeur = carte.getLargeur();
-        int hauteur = carte.getHauteur();
-        int tuileWidth = panelWidth / largeur;
-        int tuileHeight = panelHeight / hauteur;
+	/**
+	 * Dessine la carte sur le panneau graphique.
+	 * @param carte La carte à dessiner.
+	 * @param g L'objet Graphics pour dessiner.
+	 * @param panelWidth La largeur du panneau.
+	 * @param panelHeight La hauteur du panneau.
+	 */
+	public void drawCarte(Carte carte, Graphics g, int panelWidth, int panelHeight) {
+		vte = new VisualiseurTerrainEnonce(carte);
+		int largeur = carte.getLargeur();
+		int hauteur = carte.getHauteur();
+		int tuileWidth = panelWidth / largeur;
+		int tuileHeight = panelHeight / hauteur;
 
-        for (int y = 0; y < hauteur; y++) {
-            for (int x = 0; x < largeur; x++) {
-                TypeTerrain type = vte.getTypeTerrain(x, y);
-                BufferedImage image = type.getImage();
-                g.drawImage(image, x * tuileWidth, y * tuileHeight, tuileWidth, tuileHeight, null);
-            }
-        }
-    }
+		for (int y = 0; y < hauteur; y++) {
+			for (int x = 0; x < largeur; x++) {
+				TypeTerrain type = vte.getTypeTerrain(x, y);
+				BufferedImage image = type.getImage();
+				g.drawImage(image, x * tuileWidth, y * tuileHeight, tuileWidth, tuileHeight, null);
+			}
+		}
+	}
 	public VisualiseurCarteTerrain() {
 		VisualiseurCarteTerrain monObjet = this;
 		setTitle("Visualiseur de Carte");
@@ -83,46 +84,46 @@ public class VisualiseurCarteTerrain extends JFrame {
 		cartePanel.setOpaque(true);
 
 		cartePanel.addMouseMotionListener(new MouseAdapter() {
-		    @Override
-		    public void mouseMoved(MouseEvent e) {
-		        int tuileWidth = cartePanel.getWidth() / carte.getLargeur();
-		        int tuileHeight = cartePanel.getHeight() / carte.getHauteur();
+			@Override
+			public void mouseMoved(MouseEvent e) {
+				int tuileWidth = cartePanel.getWidth() / carte.getLargeur();
+				int tuileHeight = cartePanel.getHeight() / carte.getHauteur();
 
-		        int x = e.getX() / tuileWidth;
-		        int y = e.getY() / tuileHeight;
+				int x = e.getX() / tuileWidth;
+				int y = e.getY() / tuileHeight;
 
-		        System.out.println("Coordonnées de la souris - X: " + x + ", Y: " + y);
+				System.out.println("Coordonnées de la souris - X: " + x + ", Y: " + y);
 
-		        if (x >= 0 && x < carte.getLargeur() && y >= 0 && y < carte.getHauteur()) {
-		            TypeTerrain type = vte.getTypeTerrain(x, y);
-		            terrainLabel.setText("Terrain: " + type.toString());
-		        }
-		    }
+				if (x >= 0 && x < carte.getLargeur() && y >= 0 && y < carte.getHauteur()) {
+					TypeTerrain type = vte.getTypeTerrain(x, y);
+					terrainLabel.setText("Terrain: " + type.toString());
+				}
+			}
 
-		    @Override
-		    public void mouseExited(MouseEvent e) {
-		        terrainLabel.setText("Terrain: "); // Efface le texte quand la souris quitte la zone de la carte
-		    }
+			@Override
+			public void mouseExited(MouseEvent e) {
+				terrainLabel.setText("Terrain: "); // Efface le texte quand la souris quitte la zone de la carte
+			}
 		});
-		
+
 		cartePanel.addMouseListener(new MouseAdapter() {
-		    @Override
-		    public void mouseClicked(MouseEvent e) {
-		        int tuileWidth = cartePanel.getWidth() / carte.getLargeur();
-		        int tuileHeight = cartePanel.getHeight() / carte.getHauteur();
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int tuileWidth = cartePanel.getWidth() / carte.getLargeur();
+				int tuileHeight = cartePanel.getHeight() / carte.getHauteur();
 
-		        int x = e.getX() / tuileWidth;
-		        int y = e.getY() / tuileHeight;
+				int x = e.getX() / tuileWidth;
+				int y = e.getY() / tuileHeight;
 
-		        if (x >= 0 && x < carte.getLargeur() && y >= 0 && y < carte.getHauteur()) {
+				if (x >= 0 && x < carte.getLargeur() && y >= 0 && y < carte.getHauteur()) {
 
-		            // Crée le contenu à afficher dans la fenêtre modale
-		            String contenu = "Altitude: " + vte.getAltitudeAffichee(x, y) + "\nHydrométrie: " + vte.getHydrometrieAffichee(x, y)+ "\nTempérature: " + vte.getTemperatureAffichee(x, y);
+					// Crée le contenu à afficher dans la fenêtre modale
+					String contenu = "Altitude: " + vte.getAltitudeAffichee(x, y) + "\nHydrométrie: " + vte.getHydrometrieAffichee(x, y)+ "\nTempérature: " + vte.getTemperatureAffichee(x, y);
 
-		            // Affiche une fenêtre modale avec les informations de la tuile
-		            JOptionPane.showMessageDialog(cartePanel, contenu, "Informations de la tuile", JOptionPane.INFORMATION_MESSAGE);
-		        }
-		    }
+					// Affiche une fenêtre modale avec les informations de la tuile
+					JOptionPane.showMessageDialog(cartePanel, contenu, "Informations de la tuile", JOptionPane.INFORMATION_MESSAGE);
+				}
+			}
 		});
 		add(cartePanel, BorderLayout.CENTER);
 
@@ -132,39 +133,39 @@ public class VisualiseurCarteTerrain extends JFrame {
 
 		JMenuItem chargerItem = new JMenuItem("Charger une carte");
 		chargerItem.addActionListener(new ActionListener() {
-		    @Override
-		    public void actionPerformed(ActionEvent e) {
-		        JFileChooser fileChooser = new JFileChooser();
-		        int choix = fileChooser.showOpenDialog(VisualiseurCarteTerrain.this);
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser fileChooser = new JFileChooser();
+				int choix = fileChooser.showOpenDialog(VisualiseurCarteTerrain.this);
 
-		        if (choix == JFileChooser.APPROVE_OPTION) {
-		            File fichierSelectionne = fileChooser.getSelectedFile();
-		            String cheminFichier = fichierSelectionne.getAbsolutePath();
+				if (choix == JFileChooser.APPROVE_OPTION) {
+					File fichierSelectionne = fileChooser.getSelectedFile();
+					String cheminFichier = fichierSelectionne.getAbsolutePath();
 
-		            // Charger la carte à partir du fichier sélectionné
-		            carte = ManipulateurCarte.chargerCarte(cheminFichier);
+					// Charger la carte à partir du fichier sélectionné
+					carte = ManipulateurCarte.chargerCarte(cheminFichier);
 
-		            // Repaint ou rafraîchir l'affichage
-		            repaint();
-		        }
-		    }
+					// Repaint ou rafraîchir l'affichage
+					repaint();
+				}
+			}
 		});
-		
+
 		JMenuItem enregistrerItem = new JMenuItem("Enregistrer la carte");
 		enregistrerItem.addActionListener(new ActionListener() {
-		    @Override
-		    public void actionPerformed(ActionEvent e) {
-		        JFileChooser fileChooser = new JFileChooser();
-		        int choix = fileChooser.showSaveDialog(VisualiseurCarteTerrain.this);
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser fileChooser = new JFileChooser();
+				int choix = fileChooser.showSaveDialog(VisualiseurCarteTerrain.this);
 
-		        if (choix == JFileChooser.APPROVE_OPTION) {
-		            File fichierSelectionne = fileChooser.getSelectedFile();
-		            String cheminFichier = fichierSelectionne.getAbsolutePath();
+				if (choix == JFileChooser.APPROVE_OPTION) {
+					File fichierSelectionne = fileChooser.getSelectedFile();
+					String cheminFichier = fichierSelectionne.getAbsolutePath();
 
-		            // Enregistrer la carte dans le fichier sélectionné
-		            ManipulateurCarte.enregistrerCarte(carte, cheminFichier);
-		        }
-		    }
+					// Enregistrer la carte dans le fichier sélectionné
+					ManipulateurCarte.enregistrerCarte(carte, cheminFichier);
+				}
+			}
 		});
 
 
@@ -182,8 +183,8 @@ public class VisualiseurCarteTerrain extends JFrame {
 		menuBar.add(menu);
 		setJMenuBar(menuBar);
 		// Création du label pour afficher le type de terrain
-        terrainLabel = new JLabel("Terrain: ");
-        add(terrainLabel, BorderLayout.SOUTH); // Ajout du label en bas de la fenêtre
+		terrainLabel = new JLabel("Terrain: ");
+		add(terrainLabel, BorderLayout.SOUTH); // Ajout du label en bas de la fenêtre
 	}
 
 	private void genererCarteDialogue() {

@@ -17,7 +17,7 @@ import javax.swing.SwingUtilities;
 import fr.ecole3il.rodez2023.perlin.math.BruitPerlin2D;
 
 /**
- * 
+ *
  * @author proussille
  * Classe représentant une fenêtre pour générer des images de bruit de Perlin.
  */
@@ -99,8 +99,8 @@ public class VisualiseurBruitPerlin extends JFrame {
      * Méthode pour générer une nouvelle image de bruit de Perlin en fonction des paramètres saisis.
      */
     private void generateImage() {
-        String seedText = seedField.getText();
-        long seed = seedText.isEmpty() ? System.currentTimeMillis() : Long.parseLong(seedText);
+        String graineText = seedField.getText();
+        long graine = graineText.isEmpty() ? System.currentTimeMillis() : Long.parseLong(graineText);
 
         double resolution = DEFAULT_RESOLUTION;
         try {
@@ -108,12 +108,7 @@ public class VisualiseurBruitPerlin extends JFrame {
         } catch (NumberFormatException e) {
             // Utilise la résolution par défaut si la valeur entrée n'est pas valide
         }
-        
-        
-        ////////// CODE À MODIFIER 
-        noiseImage = new truc;
-        
-        ////////// FIN CODE À MODIFIER
+        noiseImage = new ImageBruit(new BruitPerlin2D(graine, resolution));
         tickImageButton.setEnabled(true); // Désactiver le bouton initialement
         tickImage();
     }
