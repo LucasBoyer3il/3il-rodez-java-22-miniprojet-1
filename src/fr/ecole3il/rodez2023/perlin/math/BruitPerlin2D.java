@@ -27,7 +27,7 @@ public class BruitPerlin2D extends Bruit2D {
 
 	private final int[] permutation;
 
-	public BruitPerlin2D(long graine, double resolution, int[] permutation) {
+	public BruitPerlin2D(long graine, double resolution) {
 		super(graine, resolution);
 		this.permutation = Utils.melanger(PERMUTATION, graine);
 	}
