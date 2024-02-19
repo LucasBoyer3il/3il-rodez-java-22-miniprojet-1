@@ -25,6 +25,4 @@ public class VisualiseurTerrain {
     public TemperatureAffichee getTemperatureAffichee(int x, int y) {
         return temperatureAffichee;
     }
-
-
 }

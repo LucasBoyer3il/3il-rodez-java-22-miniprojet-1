@@ -6,3 +6,6 @@ Expliquer, en s'appuyant sur un exercice vu en cours, pourquoi c'est une mauvais
     C'est une mauvaise idée car il faudrait créer une instance de chaque classe.
 Quelle est la solution qu'il faudrait préférer (et que l'on va préférer) ?
     Il faudrait créer une classe qui implémente tous ces type de terrain pour pouvoir créer une instance avec un type précis.
+
+Question : quel type utilisez-vous ?
+    Le type "Double".

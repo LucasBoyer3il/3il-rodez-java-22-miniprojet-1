@@ -43,8 +43,10 @@ public class Carte {
         return hauteur;
     }
 
-    public Terrain getTerrain(int x, int y) {
-        //lever une TerrainInexistantException si la case sort de la carte
+    public Terrain getTerrain(int x, int y) throws TerrainInexistantException{
+        if (x > largeur || x < largeur || y > hauteur || y < hauteur) {
+            throw new TerrainInexistantException("Valeur hors de la carte.");
+        }
         return carte[x][y];
     }
 }
