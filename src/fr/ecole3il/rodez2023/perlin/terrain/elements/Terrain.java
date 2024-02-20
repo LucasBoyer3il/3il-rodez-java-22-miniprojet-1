@@ -1,8 +1,9 @@
 package fr.ecole3il.rodez2023.perlin.terrain.elements;
 
+
 import fr.ecole3il.rodez2023.perlin.terrain.visualisation.DetermineurTerrain;
 
-public class Terrain implements DetermineurTerrain {
+public class Terrain  {
     private double hydrometrie;
     private double altitude;
     private double temperature;
@@ -31,11 +32,6 @@ public class Terrain implements DetermineurTerrain {
     }
 
     public TypeTerrain getTypeTerrain(DetermineurTerrain dt) {
-        return null;
-    }
-
-    @Override
-    public TypeTerrain determinerTerrain(double altitude, double hydrometrie, double temperature) {
-        return null;
+        return dt.determinerTerrain(altitude, hydrometrie,  temperature);
     }
 }
