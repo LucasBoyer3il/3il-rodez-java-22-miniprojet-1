@@ -50,9 +50,9 @@ public class Carte {
     }
 
     public Terrain getTerrain(int x, int y) throws TerrainInexistantException{
-        /*if (x > largeur || x < largeur || y > hauteur || y < hauteur) {
+        if (x > largeur || y > hauteur) {
             throw new TerrainInexistantException("Valeur hors de la carte.");
-        }*/
+        }
         return carte[x][y];
     }
 }
