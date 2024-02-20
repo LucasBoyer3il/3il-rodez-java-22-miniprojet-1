@@ -10,7 +10,4 @@ public class VisualiseurTerrainEnonce extends VisualiseurTerrain {
 		super(new DetermineurTerrainEnonce(), c);
 	}
 
-	public TypeTerrain getTypeTerrain(int x, int y) {
-		return null;
-	}
 }

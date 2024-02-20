@@ -9,26 +9,32 @@ public class Carte {
     private int hauteur;
     private Terrain[][] carte;
     private GenerateurCarte generateurCarte;
-    private String donneesCarte;
 
     public Carte(String nom, int largeur, int hauteur, GenerateurCarte generateurCarte) {
         this.nom = nom;
         this.largeur = largeur;
         this.hauteur = hauteur;
         this.generateurCarte = generateurCarte;
+        this.carte = generateurCarte.genererCarte(largeur, hauteur);
     }
 
     public Carte(String donneesCarte) {
         String[] chaineCoupee = donneesCarte.split("\n");
-        largeur = Integer.valueOf(chaineCoupee[1]);
-        hauteur = Integer.valueOf(chaineCoupee[2]);
-        carte = new Terrain[largeur][hauteur];
+        nom = chaineCoupee[0];
+        largeur = Integer.parseInt(chaineCoupee[1]);
+        hauteur = Integer.parseInt(chaineCoupee[2]);
+        /*terrains = new Terrain[largeur][hauteur];
         //lignes
-        for (int i = 0 ; i < chaineCoupee[i].length() ; i++) {
+        for (int i = 3 ; i < chaineCoupee[i].length() ; i++) {
             //colonnes
-            for (int j = 0 ; j < chaineCoupee[j].length() ; j++) {
-                carte[i][j] = new Terrain(j, j, j); }
-        }
+            for (int j = 0 ; j < chaineCoupee[j].length() ; j = j + 14) {
+                //TODO : implémenter le signe négatif
+                double altitude = Double.parseDouble(chaineCoupee[j].substring(j, j + 4));
+                double hydrometrie = Double.parseDouble(chaineCoupee[j].substring(j + 5, j + 9));
+                double temperature = Double.parseDouble(chaineCoupee[j].substring(j + 10, j + 14));
+                terrains[i][j] = new Terrain(altitude, hydrometrie, temperature);
+            }
+        }*/
     }
 
     public String getNom() {
@@ -44,9 +50,9 @@ public class Carte {
     }
 
     public Terrain getTerrain(int x, int y) throws TerrainInexistantException{
-        if (x > largeur || x < largeur || y > hauteur || y < hauteur) {
+        /*if (x > largeur || x < largeur || y > hauteur || y < hauteur) {
             throw new TerrainInexistantException("Valeur hors de la carte.");
-        }
+        }*/
         return carte[x][y];
     }
 }

@@ -26,6 +26,6 @@ public enum TypeTerrain {
     }
 
     public String toString() {
-        return nom.substring(nom.length() - 4 , nom.length());
+        return nom.substring(0, nom.length() - 4);
     }
 }
