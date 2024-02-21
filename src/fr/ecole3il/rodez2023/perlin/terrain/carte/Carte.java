@@ -27,21 +27,18 @@ public class Carte {
         //lignes
         int x = 0;
         int y = 0;
-        for (int i = 1 ; i < hauteur; i++) {
+        for (int i = 3 ; i < chaineCoupee.length ; i++) {
             //colonnes
-            String[] chaineCoupeeColonnes = chaineCoupee[i + 3].split(" ");
-            for (int j = 0 ; j < chaineCoupeeColonnes.length ; j++){
-                double altitude = Double.parseDouble(chaineCoupeeColonnes[0]);
-                double hydrometrie = Double.parseDouble(chaineCoupeeColonnes[1]);
-                double temperature = Double.parseDouble(chaineCoupeeColonnes[2]);
-                carte[x][y] = new Terrain(altitude, hydrometrie, temperature);
-                if (y == largeur - 1) {
-                    x++;
-                    y = 0;
-                } else {
-                    y++;
-                }
-
+            String[] chaineCoupeeColonnes = chaineCoupee[i].split(" ");
+            double altitude = Double.parseDouble(chaineCoupeeColonnes[0]);
+            double hydrometrie = Double.parseDouble(chaineCoupeeColonnes[1]);
+            double temperature = Double.parseDouble(chaineCoupeeColonnes[2]);
+            carte[x][y] = new Terrain(altitude, hydrometrie, temperature);
+            if (y == largeur - 1) {
+                x++;
+                y = 0;
+            } else {
+                y++;
             }
         }
     }
