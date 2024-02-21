@@ -11,7 +11,7 @@ public class GenerateurAleatoire extends GenerateurCarte {
 
     public Terrain genererTerrain(int i, int j, int largeur, int hauteur) {
         BruitAleatoire bruitAleatoire = new BruitAleatoire(this.getGraine(), 1.0);
-        double altitdude = bruitAleatoire.bruit2D(0.0,0.0);
+        double altitdude = -bruitAleatoire.bruit2D(0.0,0.0);
         double hydrometrie = bruitAleatoire.bruit2D(0.0,0.0);
         double temperature = bruitAleatoire.bruit2D(0.0,0.0);
 
