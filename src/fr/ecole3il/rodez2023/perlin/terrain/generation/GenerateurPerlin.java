@@ -12,14 +12,18 @@ public class GenerateurPerlin extends GenerateurCarte {
 
     @Override
     protected Terrain genererTerrain(int i, int j, int largeur, int hauteur) {
-        BruitPerlin2D bruitPerlin = new BruitPerlin2D(this.getGraine(),1);
-        double hydrometrie = Math.abs(bruitPerlin.bruit2D((double) i /largeur, (double) j /hauteur));
-        double temperature = Math.abs(2 * bruitPerlin.bruit2D((double) i /largeur, (double) j /hauteur));
-        double altitude = 2 * temperature;
+        BruitPerlin2D bruitPerlinHydro = new BruitPerlin2D(getGraine(),1);
+        BruitPerlin2D bruitPerlinTemp = new BruitPerlin2D(2 * getGraine(),1);
+        BruitPerlin2D bruitPerlinAlt = new BruitPerlin2D(bruitPerlinTemp.getGraine() * 2,1);
+        double x = (double) i/largeur;
+        double y = (double) j/hauteur;
+        double hydrometrie = bruitPerlinHydro.bruit2D(x,y);
+        double temperature = bruitPerlinTemp.bruit2D(x,y);
+        double altitude = bruitPerlinAlt.bruit2D(x,y);
 
         Terrain terrain = null;
         try {
-            terrain = new Terrain(altitude, hydrometrie, temperature);
+            return new Terrain(altitude,Math.abs(hydrometrie),Math.abs(temperature));
         } catch (MauvaiseValeurException e) {
             e.printStackTrace();
         }
