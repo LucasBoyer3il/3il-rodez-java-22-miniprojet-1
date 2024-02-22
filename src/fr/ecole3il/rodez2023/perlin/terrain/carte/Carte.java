@@ -10,6 +10,13 @@ public class Carte {
     private Terrain[][] carte;
     private GenerateurCarte generateurCarte;
 
+    /**
+     * Constructeur d'une carte pour les valeurs générées
+     * @param nom
+     * @param largeur
+     * @param hauteur
+     * @param generateurCarte
+     */
     public Carte(String nom, int largeur, int hauteur, GenerateurCarte generateurCarte) {
         this.nom = nom;
         this.largeur = largeur;
@@ -18,6 +25,10 @@ public class Carte {
         this.carte = generateurCarte.genererCarte(largeur, hauteur);
     }
 
+    /**
+     * Constructeur d'une carte suivant une carte déjà existante, une lecture de données est alors faite.
+     * @param donneesCarte
+     */
     public Carte(String donneesCarte) {
         String[] chaineCoupee = donneesCarte.split("\n");
         nom = chaineCoupee[0];

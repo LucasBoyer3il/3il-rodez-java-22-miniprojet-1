@@ -9,6 +9,13 @@ public class Terrain {
     private double temperature;
 
 
+    /**
+     * Création d'un terrain suivant plusieurs règles de possibilitées.
+     * @param altitude
+     * @param hydrometrie
+     * @param temperature
+     * @throws MauvaiseValeurException Si une des valeurs n'est pas comprise dans les possibilitées
+     */
     public Terrain (double altitude, double hydrometrie, double temperature) throws MauvaiseValeurException {
         if (altitude < -1.0 || altitude > 1.0) {
             throw new MauvaiseValeurException("Les valeurs d'altitude ne sont pas bonnes");

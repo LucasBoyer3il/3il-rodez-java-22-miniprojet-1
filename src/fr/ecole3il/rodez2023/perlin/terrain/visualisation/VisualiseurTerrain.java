@@ -16,6 +16,11 @@ public class VisualiseurTerrain {
         this.dt = dt;
     }
 
+    /**
+     * Affichage du nom de la case pour l'attribu Altitude
+     * @param x
+     * @param y
+     */
     public AltitudeAffichee getAltitudeAffichee(int x, int y) {
         AltitudeAffichee reponse;
         altitudeAffichee = carte.getTerrain(x, y).getAltitude();
@@ -31,6 +36,11 @@ public class VisualiseurTerrain {
         return reponse;
     }
 
+    /**
+     * Affichage du nom de la case pour l'attribu Hydrométrie
+     * @param x
+     * @param y
+     */
     public HydrometrieAffichee getHydrometrieAffichee(int x, int y) {
         HydrometrieAffichee reponse;
         hydrometrieAffichee = carte.getTerrain(x, y).getHydrometrie();
@@ -44,6 +54,11 @@ public class VisualiseurTerrain {
         return reponse;
     }
 
+    /**
+     * Affichage du nom de la case pour l'attribu Température
+     * @param x
+     * @param y
+     */
     public TemperatureAffichee getTemperatureAffichee(int x, int y) {
         TemperatureAffichee reponse;
         temperatureAffichee = carte.getTerrain(x, y).getHydrometrie();
